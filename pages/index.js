@@ -23,7 +23,7 @@ const Home = () => (
         opacity: 0.9;
       }
     `}</style>
-    <section className='mw7 pa3 center near-black tc lh-copy bg-cr-light ba b--light-silver br2'>
+    <section className='mw7 pa3 center near-black tj lh-copy bg-cr-light ba b--light-silver br2'>
       <p>
       Welcome to the Species Reassignment Center.<br />
       It's time for you to forget about your old life

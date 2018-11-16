@@ -1,11 +1,11 @@
 import Head from 'next/head'
 
-export default ({ children, className, desaturate = false }) => (
-  <div className={`container ${className} lato ${desaturate && 'desaturate'}`}>
+const Layout = ({ children, className, style }) => (
+  <div style={style} className={`container ${className} lato`}>
     <Head>
       <title key='title'>Become a Catgirl</title>
       <meta name='viewport' content='width=device-width, initial-scale=1' />
-      <link rel='stylesheet' key='norm' href='https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/0.5.0/modern-normalize.min.css' integrity='sha256-N6+kUxTWxpqVK+BrPWt3t4jeOWPtp37RZEbm5n9X+8U=' crossorigin='anonymous' />
+      <link rel='stylesheet' key='norm' href='https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/0.5.0/modern-normalize.min.css' integrity='sha256-N6+kUxTWxpqVK+BrPWt3t4jeOWPtp37RZEbm5n9X+8U=' crossOrigin='anonymous' />
       <link rel='stylesheet' key='tachyons' href='https://cdnjs.cloudflare.com/ajax/libs/tachyons/4.11.1/tachyons.min.css' />
       <link rel='stylesheet' key='fonts' href='https://fonts.googleapis.com/css?family=Lato' />
       <script type='text/nya'>nyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanya</script>
@@ -17,9 +17,10 @@ export default ({ children, className, desaturate = false }) => (
         --bg-y: #ffffd7;
         --bg-p: #ffd7d7;
         --bg-b: #d7ffff;
+        --bg-hr: 0deg;
       }
       .container::after {
-        position: absolute;
+        position: fixed;
         top: 0; right: 0; left: 0; bottom: 0;
         content: " ";
         z-index: -100;
@@ -38,7 +39,7 @@ export default ({ children, className, desaturate = false }) => (
         background-size: cover;
         height: 100vh;
         width: 100vw;
-        filter: saturate(1);
+        filter: saturate(1) hue-rotate(var(--bg-hr));
       }
 
       .container.desaturate::after {
@@ -64,3 +65,5 @@ export default ({ children, className, desaturate = false }) => (
     {children}
   </div>
 )
+
+export default Layout
