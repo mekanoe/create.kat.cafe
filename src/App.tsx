@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import { GamePhase, GamePhaseRouterProps } from "./game";
+import { IntroScreen, EndingScreen, GameScreen } from "./game/screens";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const GamePhaseRouter = (props: GamePhaseRouterProps) => {
+  if (props.phase === GamePhase.Intro) {
+    return <IntroScreen {...props} />;
+  }
 
-export default App;
+  if (props.phase === GamePhase.Ending) {
+    return <EndingScreen {...props} />;
+  }
+
+  return <GameScreen {...props} />;
+};
+
+export const App = () => {
+  const [gamePhase, setGamePhase] = React.useState<GamePhase>(0);
+  const next = () => setGamePhase(gamePhase + 1);
+  const reset = () => setGamePhase(GamePhase.Intro);
+
+  return <GamePhaseRouter phase={gamePhase} next={next} reset={reset} />;
+};
