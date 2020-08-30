@@ -178,14 +178,15 @@ let cachedPrimaryMajority: null | Value = null;
 const isPrimaryMajority = (value: Value, totals: Totals) => {
   if (cachedPrimaryMajority !== null) {
     let majority = Value.Animalism;
-    for (let check in totals) {
+
+    for (let check of Object.keys(totals) as Value[]) {
       if (majority === check) {
         continue;
       }
 
       if (totals[check] === totals[majority]) {
         majority = randomlyPick(check as Value, majority);
-      } else if (totals[value] > totals[majority]) {
+      } else if (totals[check] > totals[majority]) {
         majority = check as Value;
       }
     }
